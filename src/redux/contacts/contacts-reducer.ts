@@ -38,6 +38,9 @@ const error = createReducer(null, {
   [fetchContactsError.type]: (_, { payload }) => payload,
   [addContactError.type]: (_, { payload }) => payload,
   [deleteContactError.type]: (_, { payload }) => payload,
+  [fetchContactsSuccess.type]: () => null,
+  [addContactSuccess.type]: () => null,
+  [deleteContactSuccess.type]: () => null,
 });
 
 export default combineReducers({

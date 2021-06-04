@@ -1,5 +1,5 @@
 import React , { useState } from 'react';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { createUseStyles } from 'react-jss';
 import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
@@ -7,6 +7,7 @@ import { contactsOperations, contactsSelectors } from '../../../redux/contacts';
 import TextField from '../../TextField';
 import FormButton from '../../FormButton';
 import { INewContact } from '../../../interfaces/Contact.interface';
+import { checkDuplicateContacts } from '../../../service-funtions/checkDuplicateContacts';
 
 const useStyles = createUseStyles({
   Form: {
@@ -28,8 +29,8 @@ const useStyles = createUseStyles({
 
 
 export default function ContactForm() {
-  const existedContacts = useAppSelector(contactsSelectors.getContacts);
   const dispatch = useAppDispatch();
+const existedContacts = useAppSelector(contactsSelectors.getContacts);
   const addContact = (data: INewContact) => dispatch<any>(contactsOperations.addContact(data));
 
   const [name, setName] = useState('');
@@ -42,32 +43,9 @@ export default function ContactForm() {
     setNumber(e.currentTarget.value);
   };
 
-  const checkDuplicateContacts = (newContact: INewContact) => {
-    const isDuplicateNumber = existedContacts.find(
-      ({ number }) => number === newContact.number,
-    );
-    const isDuplicateName = existedContacts.find(
-      ({ name }) => name.toLowerCase() === newContact.name.toLowerCase(),
-    );
-
-    if (isDuplicateNumber) {
-      toast.error('This number is already in contacts.', {
-        position: toast.POSITION.TOP_RIGHT,
-      });
-      return true;
-    }
-
-    if (isDuplicateName) {
-      toast.error(`${isDuplicateName.name} is already in contacts.`, {
-        position: toast.POSITION.TOP_RIGHT,
-      });
-      return true;
-    }
-  };
-
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (checkDuplicateContacts({ name, number })) {
+    if (checkDuplicateContacts({ name, number }, existedContacts)) {
       return;
     }
     addContact({ name, number });
