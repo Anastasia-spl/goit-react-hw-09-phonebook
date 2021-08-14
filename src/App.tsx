@@ -1,6 +1,8 @@
 import { Switch, Route } from 'react-router-dom';
 import { lazy, Suspense , useEffect} from 'react';
-import { useAppDispatch, useAppSelector} from './redux/hooks';
+import { useAppSelector } from './redux/hooks';
+import { useDispatch } from 'react-redux';
+
 import routes from './routes';
 import { authOperations, authSelectors } from './redux/auth';
 
@@ -17,10 +19,10 @@ const Page404 = lazy(() => import('./pages/Page404' /* webpackChunkName: "404-pa
 
 export default function App() {
   const isLoading: boolean = useAppSelector(authSelectors.getIsLoading);
-  const dispatch = useAppDispatch();
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch<any>(authOperations.getCurrentUser())
+    dispatch(authOperations.getCurrentUser())
   }, [dispatch]);
 
   return (

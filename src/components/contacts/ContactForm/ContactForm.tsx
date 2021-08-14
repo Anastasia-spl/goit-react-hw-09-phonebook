@@ -1,8 +1,9 @@
-import React , { useState } from 'react';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { createUseStyles } from 'react-jss';
-import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
+import { useAppSelector } from '../../../redux/hooks';
 import { contactsOperations, contactsSelectors } from '../../../redux/contacts';
 import TextField from '../../TextField';
 import FormButton from '../../FormButton';
@@ -29,9 +30,9 @@ const useStyles = createUseStyles({
 
 
 export default function ContactForm() {
-  const dispatch = useAppDispatch();
+  const dispatch = useDispatch();
 const existedContacts = useAppSelector(contactsSelectors.getContacts);
-  const addContact = (data: INewContact) => dispatch<any>(contactsOperations.addContact(data));
+  const addContact = (data: INewContact) => dispatch(contactsOperations.addContact(data));
 
   const [name, setName] = useState('');
   const handleChangeName = ( e: React.FormEvent<HTMLInputElement>) => {

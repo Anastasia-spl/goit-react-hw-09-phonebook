@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import { authSelectors } from '../../redux/auth';
-import {useAppSelector} from '../../redux/hooks';
+import { useAppSelector } from '../../redux/hooks';
 /**
  * - Если маршрут приватный и пользователь залогинен, рендерит компонент
  * - В противном случае рендерит Redirect на /login

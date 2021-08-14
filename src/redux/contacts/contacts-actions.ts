@@ -15,4 +15,15 @@ const fetchContactsError = createAction<string>('contacts/fetchContactsError');
 
  const filterContact = createAction<string, 'contacts/filterContact'>('contacts/filterContact');
  // eslint-disable-next-line
-export default { fetchContactsRequest, fetchContactsSuccess, fetchContactsError, addContactRequest, addContactSuccess, addContactError, deleteContactRequest, deleteContactSuccess, deleteContactError, filterContact };
+export default {
+  fetchContactsRequest,
+  fetchContactsSuccess, 
+  fetchContactsError, 
+  addContactRequest, 
+  addContactSuccess, 
+  addContactError, 
+  deleteContactRequest, 
+  deleteContactSuccess, 
+  deleteContactError, 
+  filterContact
+};

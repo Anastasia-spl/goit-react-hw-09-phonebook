@@ -1,4 +1,4 @@
-import { useAppDispatch } from '../../../redux/hooks';
+import { useDispatch } from 'react-redux';
 import { authOperations } from '../../../redux/auth';
 
 import Form from '../../Form';
@@ -8,8 +8,8 @@ import { useState } from 'react';
 import {ISignUpUser} from '../../../interfaces/User.interface';
 
 export default function SignUpForm() {
-  const dispatch = useAppDispatch();
-  const onFormSubmit = (credentials: ISignUpUser) => dispatch<any>(authOperations.signUp(credentials));
+  const dispatch = useDispatch();
+  const onFormSubmit = (credentials: ISignUpUser) => dispatch(authOperations.signUp(credentials));
 
   const [name, setName] = useState('');
   const handleChangeName = (e: React.FormEvent<HTMLInputElement>) => {

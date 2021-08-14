@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useAppDispatch } from '../../../redux/hooks';
+import { useDispatch } from 'react-redux';
 import { authOperations } from '../../../redux/auth';
 
 import Form from '../../Form';
@@ -7,7 +7,7 @@ import TextField from '../../TextField';
 import FormButton from '../../FormButton';
 
 export default function LogInForm() {
-  const dispatch = useAppDispatch();
+  const dispatch = useDispatch();
 
   const [email, setEmail] = useState('');
 
@@ -23,7 +23,7 @@ export default function LogInForm() {
 
   const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    dispatch<any>(authOperations.logIn({ email, password }));
+    dispatch(authOperations.logIn({ email, password }));
     setEmail('' );
     setPassword('');
   };

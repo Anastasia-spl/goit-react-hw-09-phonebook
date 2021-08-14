@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
+import { useDispatch } from 'react-redux';
 import { fade, makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -14,7 +14,7 @@ import ImportContactsIcon from '@material-ui/icons/ImportContacts';
 import { authSelectors, authOperations } from '../../redux/auth';
 import { contactsActions, contactsSelectors } from '../../redux/contacts';
 import routes from '../../routes';
-import { useAppDispatch, useAppSelector } from '../../redux/hooks';
+import { useAppSelector } from '../../redux/hooks';
 
 const useStyles = makeStyles(theme => ({
   grow: {
@@ -102,8 +102,8 @@ const useStyles = makeStyles(theme => ({
 export default function PrivateHeader() {
   const userName = useAppSelector(authSelectors.getUserName);
   const filterValue = useAppSelector(contactsSelectors.getFilter);
-  const dispatch = useAppDispatch();
-  const onLogOut = () => dispatch<any>(authOperations.logOut());
+  const dispatch = useDispatch();
+  const onLogOut = () => dispatch(authOperations.logOut());
   const onFilterChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     dispatch(contactsActions.filterContact(e.currentTarget.value));
 

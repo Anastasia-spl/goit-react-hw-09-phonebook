@@ -1,6 +1,7 @@
 import { createUseStyles } from 'react-jss';
 import { lazy } from 'react';
-import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
+import { useDispatch } from 'react-redux';
+import { useAppSelector } from '../../../redux/hooks';
 
 import { contactsOperations, contactsSelectors } from '../../../redux/contacts';
 import Loader from '../../Loader';
@@ -50,8 +51,8 @@ export default function ContactList() {
   );
   const isLoading = useAppSelector(contactsSelectors.getLoader);
   const isError = useAppSelector(contactsSelectors.getIsError);
-  const dispatch = useAppDispatch();
-  const onDeleteContact = (id: string) => dispatch<any>(contactsOperations.deleteContact(id));
+  const dispatch = useDispatch();
+  const onDeleteContact = (id: string) => dispatch(contactsOperations.deleteContact(id));
   const { contactItem, deleteBtn, text } = useStyles();
 
   return (

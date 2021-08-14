@@ -18,4 +18,17 @@ const getCurrentUserSuccess = createAction<ILogInUser,'auth/getCurrentUserSucces
 const getCurrentUserError = createAction<string, 'auth/getCurrentUserError'>('auth/getCurrentUserError');
 
  // eslint-disable-next-line
-export default { signUpRequest,signUpSuccess, signUpError, logInRequest, logInSuccess, logInError,logOutRequest, logOutSuccess, logOutError, getCurrentUserRequest, getCurrentUserSuccess, getCurrentUserError};
+export default {
+  signUpRequest,
+  signUpSuccess, 
+  signUpError, 
+  logInRequest, 
+  logInSuccess, 
+  logInError,
+  logOutRequest, 
+  logOutSuccess, 
+  logOutError, 
+  getCurrentUserRequest,
+  getCurrentUserSuccess,
+  getCurrentUserError
+};
